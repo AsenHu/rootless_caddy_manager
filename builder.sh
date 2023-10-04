@@ -66,15 +66,15 @@ check_update() {
     dir=$(pwd)
     if [ ! -f "$dir/builder.sh" ]
     then
-        curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
+        curl -o "$dir/builder.sh" https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/builder.sh
         chmod +x "$dir/builder.sh"
     else
-        latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/build_version.txt)
+        latest_scr_VERSION=$(curl -sL https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/build_version.txt)
         local_scr_VERSION=1.0.2
         if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
         then
             rm -rf "$dir/builder.sh"
-            curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
+            curl -o "$dir/builder.sh" https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/builder.sh
             chmod +x "$dir/builder.sh"
         fi
     fi
