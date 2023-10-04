@@ -47,7 +47,7 @@ build_xcaddy() {
 
 build_caddy() {
     local local_CADDY_VERSION latest_CADDY_VERSION i par
-    local_CADDY_VERSION=$(caddy version | awk -F " " '{print $1}')
+    local_CADDY_VERSION=$(./caddy version | awk -F " " '{print $1}')
     latest_CADDY_VERSION=$(curl -sL https://api.github.com/repos/caddyserver/caddy/releases/latest | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     if [ "$latest_CADDY_VERSION" != "$local_CADDY_VERSION" ]
     then
@@ -69,7 +69,7 @@ check_update() {
         chmod +x "$dir/builder.sh"
     else
         latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/build_version.txt)
-        local_scr_VERSION=1.0.1
+        local_scr_VERSION=1.0.2
         if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
         then
             rm -rf "$dir/builder.sh"
