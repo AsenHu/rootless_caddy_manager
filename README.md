@@ -9,7 +9,7 @@
 这个命令会在 `$HOME/CADDY` 运行脚本。
 
 ```
-mkdir ~/CADDY && cd ~/CADDY && bash <(curl https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/builder.sh)
+mkdir -p ~/CADDY && cd ~/CADDY && bash <(curl https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/builder.sh)
 ```
 
 记得写个 crontab 定时运行这个脚本
