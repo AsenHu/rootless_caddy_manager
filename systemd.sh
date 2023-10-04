@@ -19,13 +19,14 @@ cp_caddy() {
     then
         if [ "$buildVer" != "$binVer" ]
         then
+            systemctl stop caddy
             rm -rf "$binPathExe"
             groupadd --system caddy
             useradd --system --gid caddy --create-home --home-dir /var/lib/caddy --shell /usr/sbin/nologin --comment "Caddy web server" caddy
             curl -o caddy.service https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service
             mv ./caddy.service /usr/lib/systemd/system/caddy.service
             systemctl daemon-reload
-            systemctl enable caddy
+            systemctl enable --now caddy
         fi
     fi
 }
