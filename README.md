@@ -25,6 +25,13 @@ mkdir ~/CADDY && cd ~/CADDY && bash <(curl https://raw.githubusercontent.com/Ase
 
 随便找个目录下载进去，用 crontab 每天运行就行了。只有在确定有更新的时候才会替换。
 
+直接安装 + 运行
+
+```
+cd ~ && bash <(curl https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/systemd.sh)
+```
+
+crontab
 ```
 # 每天凌晨四点半运行一次
 30 4 * * * /bin/bash /root/systemd.sh
