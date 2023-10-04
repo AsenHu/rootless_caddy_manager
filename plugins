@@ -1,1 +1,2 @@
-github.com/caddy-dns/cloudflare
+# plugins=( github.com/caddy-dns/cloudflare github.com/other/plugin1 github.com/other/plugin2 )
+plugins=( github.com/caddy-dns/cloudflare )
