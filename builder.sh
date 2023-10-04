@@ -68,7 +68,9 @@ check_update() {
     if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
     then
         rm -rf "$dir/builder.sh"
-        curl -o "$dir/builder.sh" "https://raw.githubusercontent.com/AsenHu/rootless_go_manager/main/install.sh"
+        curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
+        chmod +x "$dir/builder.sh"
+    fi
 }
 
 main() {
