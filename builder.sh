@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+touch ./plugins
 source ./plugins
 
 install_go_scr() {
