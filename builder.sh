@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-touch ./plugins
 source ./plugins
 
 install_go_scr() {
@@ -64,13 +63,19 @@ build_caddy() {
 check_update() {
     local dir latest_scr_VERSION local_scr_VERSION
     dir=$(pwd)
-    latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/build_version.txt)
-    local_scr_VERSION=1.0.0
-    if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
+    if [ ! -f "$dir/builder.sh" ]
     then
-        rm -rf "$dir/builder.sh"
         curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
         chmod +x "$dir/builder.sh"
+    else
+        latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/build_version.txt)
+        local_scr_VERSION=1.0.1
+        if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
+        then
+            rm -rf "$dir/builder.sh"
+            curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
+            chmod +x "$dir/builder.sh"
+        fi
     fi
 }
 
