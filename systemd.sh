@@ -3,6 +3,17 @@
 caddyExe=$1
 binPathExe=$2
 
+if [ ! "$caddyExe" ]
+then
+    echo "There is no compiled caddy program."
+    exit 1
+fi
+
+if [ ! "$binPathExe" ]
+then
+    binPathExe=/usr/bin/caddy
+fi
+
 curl() {
     # Copy from https://github.com/XTLS/Xray-install
     if ! $(type -P curl) -L -q --retry 5 --retry-delay 10 --retry-max-time 60 "$@";then
@@ -35,7 +46,7 @@ check_update() {
     local dir latest_scr_VERSION local_scr_VERSION
     dir=$(pwd)
     latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/systemd_version.txt)
-    local_scr_VERSION=1.0.0
+    local_scr_VERSION=1.0.1
     if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
     then
         rm -rf "$dir/systemd.sh"
