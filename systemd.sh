@@ -34,11 +34,18 @@ check_update() {
     local dir latest_scr_VERSION local_scr_VERSION
     dir=$(pwd)
     latest_scr_VERSION=$(curl -sL https://github.com/AsenHu/rootless_caddy_manager/raw/main/systemd_version.txt)
-    local_scr_VERSION=1
+    local_scr_VERSION=1.0.0
     if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
     then
-        rm -rf "$dir/builder.sh"
-        curl -o "$dir/builder.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/builder.sh
-        chmod +x "$dir/builder.sh"
+        rm -rf "$dir/systemd.sh"
+        curl -o "$dir/systemd.sh" https://github.com/AsenHu/rootless_caddy_manager/raw/main/systemd.sh
+        chmod +x "$dir/systemd.sh"
     fi
 }
+
+main() {
+    check_update
+    cp_caddy
+}
+
+main
