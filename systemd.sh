@@ -31,7 +31,15 @@ cp_caddy() {
         if [ "$buildVer" != "$binVer" ]
         then
             mkdir -p /etc/caddy
-            touch /etc/caddy/Caddyfile
+            if [ ! -f /etc/caddy/Caddyfile ]
+            then
+                echo -e ':2015\nrespond "Hello, world!"'
+            fi
+            if ! "$buildVer" validate --config /etc/caddy/Caddyfile
+            then
+                mv -b /etc/caddy/Caddyfile /etc/caddy/Caddyfile.badconfig
+                echo -e ':2015\nrespond "Hello, world!"'
+            fi
             systemctl stop caddy
             cp -f "$caddyExe" "$binPathExe"
             groupadd --system caddy
