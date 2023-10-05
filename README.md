@@ -28,7 +28,7 @@ mkdir -p ~/CADDY && cd ~/CADDY && bash <(curl https://raw.githubusercontent.com/
 直接安装 + 运行
 
 ```
-cd ~ && bash <(curl https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/systemd.sh) /home/<你的用户名>/CADDY/caddy /user/bin/caddy
+cd ~ && bash <(curl https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/systemd.sh) /home/admin/CADDY/caddy /usr/bin/caddy
 ```
 
 crontab
