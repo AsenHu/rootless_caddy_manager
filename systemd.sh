@@ -30,6 +30,8 @@ cp_caddy() {
     then
         if [ "$buildVer" != "$binVer" ]
         then
+            mkdir -p /etc/caddy
+            touch /etc/caddy/Caddyfile
             systemctl stop caddy
             rm -rf "$binPathExe"
             groupadd --system caddy
