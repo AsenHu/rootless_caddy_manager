@@ -33,7 +33,7 @@ cp_caddy() {
             mkdir -p /etc/caddy
             touch /etc/caddy/Caddyfile
             systemctl stop caddy
-            rm -rf "$binPathExe"
+            cp -f "$caddyExe" "$binPathExe"
             groupadd --system caddy
             useradd --system --gid caddy --create-home --home-dir /var/lib/caddy --shell /usr/sbin/nologin --comment "Caddy web server" caddy
             curl -o caddy.service https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service
@@ -53,7 +53,7 @@ check_update() {
         chmod +x "$dir/systemd.sh"
     else
         latest_scr_VERSION=$(curl -sL https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/systemd_version.txt)
-        local_scr_VERSION=1.0.2
+        local_scr_VERSION=1.0.3
         if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
         then
             rm -rf "$dir/systemd.sh"
