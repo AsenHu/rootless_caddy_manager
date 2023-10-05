@@ -33,12 +33,12 @@ cp_caddy() {
             mkdir -p /etc/caddy
             if [ ! -f /etc/caddy/Caddyfile ]
             then
-                echo -e ':2015\nrespond "Hello, world!"'
+                echo -e ':2077\nrespond "Hello, world!"' > /etc/caddy/Caddyfile
             fi
             if ! "$buildVer" validate --config /etc/caddy/Caddyfile
             then
                 mv -b /etc/caddy/Caddyfile /etc/caddy/Caddyfile.badconfig
-                echo -e ':2015\nrespond "Hello, world!"'
+                echo -e ':2077\nrespond "Hello, world!"' > /etc/caddy/Caddyfile
             fi
             systemctl stop caddy
             cp -f "$caddyExe" "$binPathExe"
@@ -61,7 +61,7 @@ check_update() {
         chmod +x "$dir/systemd.sh"
     else
         latest_scr_VERSION=$(curl -sL https://raw.githubusercontent.com/AsenHu/rootless_caddy_manager/main/systemd_version.txt)
-        local_scr_VERSION=1.0.3
+        local_scr_VERSION=1.0.4
         if [ "$latest_scr_VERSION" != "$local_scr_VERSION" ]
         then
             rm -rf "$dir/systemd.sh"
