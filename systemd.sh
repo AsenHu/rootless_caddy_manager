@@ -35,7 +35,7 @@ cp_caddy() {
             then
                 echo -e ':2077\nrespond "Hello, world!"' > /etc/caddy/Caddyfile
             fi
-            if ! "$buildVer" validate --config /etc/caddy/Caddyfile
+            if ! "$caddyExe" validate --config /etc/caddy/Caddyfile
             then
                 mv -b /etc/caddy/Caddyfile /etc/caddy/Caddyfile.badconfig
                 echo -e ':2077\nrespond "Hello, world!"' > /etc/caddy/Caddyfile
